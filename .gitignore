@@ -1,0 +1,24 @@
+# Node modules (both client and server)
+node_modules/
+
+# Logs
+*.log
+
+# Environment Variables
+client/.env
+server/.env
+
+# Build folders (client-side)
+client/build/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE/Editor settings
+.idea/
+.vscode/
+
+# Temporary files
+*.tmp
+*.bak
