@@ -6,9 +6,12 @@ const messageRoutes = require("./routes/messages");
 const app = express();
 const socket = require("socket.io");
 require("dotenv").config();
+const path = require("path");
 
 app.use(cors());
 app.use(express.json());
+
+const  _dirname = path.resolve();
 
 mongoose
   .connect(process.env.MONGO_URL, {
@@ -28,6 +31,12 @@ app.get("/ping", (_req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
+
+
+app.use(express.static(path.join(_dirname,"/public/build")))
+app.get('*',(_,res)=>{
+  res.sendFile(path.resolve(_dirname,"public","build","index.html"));
+})
 
 const server = app.listen(process.env.PORT, () =>
   console.log(`Server started on ${process.env.PORT}`)
